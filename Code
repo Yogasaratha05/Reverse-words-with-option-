@@ -1,0 +1,56 @@
+def reverse_words(sentence, option='individual'):
+    """
+    Reverse words in the given sentence according to the specified option.
+
+    Parameters:
+    sentence (str): The sentence to be reversed.
+    option (str): The reversal option. Can be 'individual', 'sentence', or 'custom'.
+
+    Returns:
+    str: The sentence with words reversed according to the specified option.
+    """
+
+    def reverse_individual_words(sentence):
+        return ' '.join(word[::-1] for word in sentence.split())
+
+    def reverse_entire_sentence(sentence):
+        return ' '.join(sentence.split()[::-1])
+
+    def custom_reversal(sentence):
+        # Custom reversal rule: reverse each word and then reverse the order of words
+        return ' '.join(word[::-1] for word in sentence.split()[::-1])
+
+    if option == 'individual':
+        return reverse_individual_words(sentence)
+    elif option == 'sentence':
+        return reverse_entire_sentence(sentence)
+    elif option == 'custom':
+        return custom_reversal(sentence)
+    else:
+        raise ValueError("Invalid option. Choose 'individual', 'sentence', or 'custom'.")
+
+# Get input from the user
+sentence = input("Enter a sentence: ")
+
+# Print options for the user
+print("Choose an option for reversing the sentence:")
+print("1. Reverse each word individually")
+print("2. Reverse the entire sentence")
+print("3. Custom reversal (reverse each word and then reverse the order of words)")
+
+# Get user's choice
+option = input("Enter your choice (1, 2, or 3): ")
+
+# Map user choice to the corresponding option
+if option == '1':
+    selected_option = 'individual'
+elif option == '2':
+    selected_option = 'sentence'
+elif option == '3':
+    selected_option = 'custom'
+else:
+    raise ValueError("Invalid choice. Please enter 1, 2, or 3.")
+
+# Print the reversed sentence based on the selected option
+reversed_sentence = reverse_words(sentence, selected_option)
+print("Reversed sentence:", reversed_sentence
